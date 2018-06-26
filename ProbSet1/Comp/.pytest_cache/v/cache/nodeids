@@ -1,0 +1,10 @@
+[
+  "test_UnitTesting.py::test_smallest_factor",
+  "test_UnitTesting.py::test_month_length",
+  "test_UnitTesting.py::test_operate",
+  "test_solutions.py::test_addition",
+  "test_solutions.py::test_smallest_factor",
+  "test_solutions.py::test_operator",
+  "test_solutions.py::test_complex_addition",
+  "test_solutions.py::test_complex_multiplication"
+]
