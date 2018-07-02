@@ -1,0 +1,3 @@
+This is to state that some of the solutions have been done with the help of Keshav and Navneeraj.
+I would thanks Matt for his help in understanding the Maths problem. I would also like to thank Yung and Jayhyung for their help with latex code.
+Thanks to Alberto for sharing some of the answers for a better understanding as Real Analysis is too complex for me to get used to in such a short time. 
