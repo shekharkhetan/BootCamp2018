@@ -1,0 +1,417 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{array}
+\usepackage{threeparttable}
+\usepackage{geometry}
+\geometry{letterpaper,tmargin=1in,bmargin=1in,lmargin=1.25in,rmargin=1.25in}
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{\footnotesize\textsl{Page \thepage\ of \pageref{LastPage}}}
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{0pt}
+\usepackage[format=hang,font=normalsize,labelfont=bf]{caption}
+\usepackage{listings}
+\lstset{frame=single,
+  language=Python,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+\usepackage{ragged2e}
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{harvard}
+\usepackage{setspace}
+\usepackage{float,color}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\hypersetup{colorlinks,linkcolor=red,urlcolor=blue}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{derivation}{Derivation} % Number derivations on their own
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Proposition} % Number propositions on their own
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+%\numberwithin{equation}{section}
+\bibliographystyle{aer}
+\newcommand\ve{\varepsilon}
+\newcommand\boldline{\arrayrulewidth{1pt}\hline}
+
+
+
+
+
+\begin{document}
+\begin{flushleft}
+\textbf{\large{Problem Set Week 4}} \\
+\vspace{2mm}
+\textbf{\large{Introduction to Continuous Optimization and Convex Sets}} \\
+\vspace{2mm}
+Shekhar Kumar \\
+\end{flushleft}
+
+\section*{Exercise 6.6}
+ Since, $f(x, y) = 3x^2y+4xy^2+xy$ 
+\newline
+\doublespacing
+ We  know  that  the  critical points are achieved by taking first differential ,i.e.,
+\singlespacing
+\begin{equation}
+Df_{x}(x, y) = 0  ,i.e.,    6xy+4y^2+y = 0 , 
+\end{equation}
+and
+\begin{equation}
+Df_{y}(x, y) = 0 , i.e,
+3x^2+8xy+x  = 0 
+\end{equation}
+
+So these give us four  following possibilities when we rewrite the equations above as,  $y(6x + 4y+ 1)= 0$  and  $x(3x+ 8y +1) = 0$ :
+\newline
+
+\begin{equation}
+    x = 0 \indent and \indent y = 0
+\end{equation}
+\begin{equation}
+    6x + 4y + 1 = 0\indent and\indent 3x+ 8y+ 1 = 0
+\end{equation}
+\begin{equation}
+    6x +4y +1 = 0\indent and\indent x = 0
+\end{equation}
+ \begin{equation}
+    3x+ 8y +1 = 0\indent and\indent y = 0
+ \end{equation}
+ \newline
+ Solving for the above equations (3) to (6),  we get 4 sets of points as \\ $ (0, 0), (0, -1/4), (-1/3, 0), (-1/9, -1/2).$\\  Other than these points the critical points do not exist as the solution for the first differential equal to zero are these only.
+\newline
+\doublespacing
+Solving for the second order differentiation of $ Df_{x}(x,y)$ and $Df_{y}(x,y)$ , we get a $2  *  2 $ matrix  as follows:
+\vspace{2mm}
+\newline
+Solving for terms within the matrix , we get the above matrix as :
+\newline
+\begin{equation*}
+\left[
+\begin{matrix}
+6y &6x+8y+1\\
+6x+8y+1 &8x
+\end{matrix}
+\right]
+\end{equation*}
+\newline
+After getting the value of the matrix at all of the above four sets of points we see whether the condition of $D^2f(x) > 0$ is satisfied or not for local minima, i.e., \newline
+whether $ f_{xx} + f_{yy} > 0 $  and  $f_{xx}f_{yy} - f_{xy}^2 > 0$
+\newline
+We see that none of the points satisfy the conditions above . Hence none of them is a minima. But then we have the condition for a local maxima as
+$ f_{xx} + f_{yy} < 0 $  and  $f_{xx}f_{yy} - f_{xy}^2 > 0$.\\
+We see that this condition is satisfied by (-1/9,-1/12) and hence it is the local maxima. The other four points are the saddle points.
+
+\section*{Exercise 6.7}
+\begin{enumerate}
+\item
+$f(\textbf{x}) = \textbf{x}^TA\textbf{x} - \textbf{b}^T\textbf{x} + c$
+Let A be the square matrix 
+$\left[
+\begin{matrix}
+a_{11} &a_{12}\\
+a_{21} &a_{22}
+\end{matrix}
+\right]$
+and X be the matrix $\left[
+\begin{matrix}
+x1\\
+x2
+\end{matrix}
+\right]$
+so the $\textbf{x}^TA\textbf{x}$ is giving the result as $a_{11}x_{1}^2+a_{21}x_{2}x_{1}+a_{12}x_{1}x_{2}+a_{22}x_{2}^2.$
+When we do  $\textbf{x}^T\textbf{A}^T\textbf{x}$, we get the same result. Meaning that both $\textbf{x}^T\textbf{A}^T\textbf{x}$ and $\textbf{x}^TA\textbf{x}$ are the same and hence $\textbf{x}^TQ\textbf{x} = 2\textbf{x}^TA\textbf{x}$.\\ Hence the above f(\textbf{x}) can be rewritten as 
+$f(\textbf{x}) = \frac{1}{2}\textbf{x}^TQ\textbf{x} - \textbf{b}^T\textbf{x} + c.$
+
+ \item If minima of the quadratic exists then the first derivative of the quadratic at the minima will be zero. Differentiating $f(x)$ gives
+ \begin{equation*}\tag{6.7.1} \label{eq:6.7.1}
+\frac{1}{2}(x^TQ + x^TQ^T) = b^T
+\end{equation*}    
+ 
+ Since from 1 above we have $Q^T = Q$. This shows that 
+   \begin{equation*}
+x^TQ  = b^T
+\end{equation*}   
+
+Taking transpose of both sides, we get our result 
+$\mathbf {Q^Tx^* = b}$
+\item As shown in the 2 above if the derivative of the quadratic is equated to zero then we get the first order necessary condition as  $ Q^Tx^* = b$. The necessary and sufficient condition for a minima to exist is that the second derivative of the equation has to be positive definite.
+
+Differentiating \eqref{eq:6.7.1} again we get its' derivative as $Q$. Therefore, if Q is positive definite then the quadratic will have a minima.
+
+\end{enumerate}
+
+\subsection*{Problem 6.11}
+
+The Newton's method has the following iterative algorithm to identify the minimizer:
+  \begin{equation*}
+x_{t+1}  =x_{t} - \frac{f^{'}(x_k)}{f^{"}(x_k)}
+\end{equation*}  
+\begin{flushleft}
+Inserting the value of $f^{'}(x_k)$ and $f^{"}(x_k)$ in the above equation gives
+\end{flushleft}
+  \begin{equation*}
+x_{1}  =x_{0} - \Big(\frac{2ax_{0}+b}{2a}\Big)
+\end{equation*} 
+Therefore, the process converges in 1 iteration and $x^*$ =  -$\frac{b}{2a}$ 
+
+
+
+\subsection*{Problem 6.15}
+
+See the Python code and answer in the included Jupyter notebook
+
+\subsection*{Problem 7.1}
+
+Let $x,y \in conv(S)$. Further x,y can be written as $x = \sum_{i=1}^{k} \lambda_i a_i $, and $y = \sum_{i=1}^{k} \mu_i a_i$, where $\sum_{i=1}^{k} \lambda_i =1 $ and $ \sum_{i=1}^{k} \mu_i = 1 $.\\\\
+If we are able to show that $\alpha x + (1-\alpha) y \in conv(S)$ for $\alpha \in [0,1]$ then we would have proven that $conv(S)$  is convex.
+
+\begin{equation*}
+\alpha x + (1-\alpha) y = \alpha\sum_{i=1}^{k} \lambda_ia_i   + (1-\alpha)\sum_{i=1}^{k}\mu_i a_i 
+\end{equation*}
+RHS can be written as :
+\begin{equation*}
+\sum_{i=1}^{k} (\alpha\lambda_i  + (1-\alpha)\mu_i) a_i 
+\end{equation*}
+\begin{flushleft}
+It can be seen that $\sum_{i=1}^{k} ( \alpha \lambda_i   + (1-\alpha)\mu_i)  = 1$. Thus, $\alpha x + (1- \alpha) y \in conv(S)$. Therefore, $ conv(S)$ is convex.
+\end{flushleft}
+
+
+\subsection*{Problem 7.2}
+\begin{enumerate}
+\item
+Let $ P = \{x \in V | \langle a,x\rangle = b\}$, be a hyperplane. For  $x,y \in P $,  if
+\begin{equation*}
+\langle a,\lambda x + (1-\lambda)y\rangle=\lambda\langle a,x\rangle + (1-\lambda)\langle a,y\rangle = b  \  \forall \lambda \in [0,1]
+\end{equation*}
+Using property of inner product spaces for real numbers it is easy to show that the hyperplane \textbf{P} will be a convex set. 
+
+Thus, $\lambda x + (1-\lambda)y \in P$. 
+
+\item
+Let $ H = \{x \in V | \langle a,x\rangle \leq b\}$, be a hyperplane. For  $x,y \in H $,  if
+\begin{equation*}
+\langle a,\lambda x + (1-\lambda)y\rangle=\lambda\langle a,x\rangle + (1-\lambda)\langle a,y\rangle \leq b  \  \forall \lambda \in [0,1]
+\end{equation*}
+Using property of inner product spaces for real numbers it is easy to show that the hyperplane \textbf{H} will be a convex set. 
+
+Thus, $\lambda x + (1-\lambda)y \in H$. 
+
+\end{enumerate}
+
+\subsection*{Problem 7.4}
+\begin{enumerate}
+    \item We can write the LHS of the given equation as
+    \begin{equation*}
+\lVert x-y \rVert^2 = \lVert (x-p)+(p-y) \rVert^2 = \langle (x-p)+(p-y), (x-p)+(p-y)\rangle
+\end{equation*}
+Using the rules for inner product spaces for real numbers we can write RHS of above equations as  
+\begin{equation*}
+ \langle (x-p)+(p-y), (x-p)+(p-y)\rangle =  \lVert x-p \rVert^2 +\lVert p-y \rVert^2 +2\langle x-p,p-y\rangle
+\end{equation*}
+
+    \item
+    We are given that $\langle x-p,p-y\rangle \geq0 \ \forall y \in C$ 
+    
+    Using the result shown in 1 above. It is clear that $ \lVert x-y \rVert > \lVert x-p \rVert$
+    \item
+    The given norm can be written as shown below
+    \begin{equation*}
+  \lVert x-z \rVert^2= \lVert x-\lambda y -(1-\lambda)p \rVert^2
+  \end{equation*}
+  
+   \begin{equation*}
+   =
+ \lVert x-p \rVert^2 +  2\lambda \langle x-p,(p-y)\rangle + \lambda^2 \lVert (y - p)\rVert^2 
+\end{equation*}
+
+    \item
+Using (7.15), and setting $z=y$. Then, using (7.15) and result in 2 above, we get
+\begin{equation*}
+0 \leq \lVert x-y\rVert^2 - \lVert x-p\rVert^2 = 2\lambda \langle x-p, p-y\rangle + \lambda^2 \lVert y-p\rVert^2
+\end{equation*}
+Dividing the whole equation by $\lambda$ gives us our result for the equation given then 
+\begin{equation*}
+    0 \leq 2 \langle x-p,p-y \rangle + \lambda \lVert y-p \rVert^2 
+\end{equation*}
+
+Since the above equation holds for every $\lambda$ and $y \in C$, setting $\lambda=0$ gives us our result  $\langle x-p,p-y \rangle \geq 0$
+\end{enumerate}
+
+subsection*{Problem 7.8}
+We are given the function $ g(x) =  f(Ax+b) $ 
+\begin{equation*}
+    g(\lambda x + (1-\lambda) y) =  f(A(\lambda x + (1-\lambda)y) + b)
+\end{equation*}
+RHS can be further written as:
+\begin{equation*}
+     f(A(\lambda x + (1-\lambda)y + b) = f(\lambda(Ax+b) + (1-\lambda)(Ay+b))
+\end{equation*}
+Since it is given that $f$ is convex, we can use its' property. Which gives us 
+\begin{equation*}
+    f(\lambda(Ax+b) + (1-\lambda)(Ay+b)) \leq  \lambda f(Ax+b) + (1-\lambda)f(Ay+b)
+\end{equation*}
+which can be further written as
+\begin{equation*}
+    \lambda g(x) + (1-\lambda)g(y)
+\end{equation*}
+Hence we get our result.
+
+\subsection*{Problem 7.12}
+\begin{enumerate}
+    \item Let $ A,B \in PD_n(\mathbb{R})$. A matrix,M is positive definite if for any non-zero vector $x$, $ x^TMx>0 $
+    \begin{equation*}
+        x^T(\lambda A + (1-\lambda)B)x = \lambda x^TAx + (1-\lambda)x^TBx
+    \end{equation*}
+    Since $x^TAx > 0, x^TBx >0, \lambda x^TAx + (1-\lambda)x^TBx > 0 $. Thus the combination also $\in PD_n(\mathbb{R})$
+    
+    \item We prove the following one by one to get the main result.
+    \begin{enumerate}
+    \item We are given that the function $g(t): [0,1] \rightarrow \mathbb{R}$ given by $g(t) = f(tA + (1-t)B)$ is convex. 
+    From the chapter, we have the result that if $f$ is a real-valued function on a convex set $C \subset \mathbb{R}^n$, then
+    \begin{align*}
+        &f \textnormal{ is convex } \Leftrightarrow \\
+        \forall x_1, x_2 \subset C, \textnormal{ the map } g: [0,1] \rightarrow \mathbb{R}&\textnormal{ given by } g(t) = f(tx_1 + (1-t)x_2 \textnormal{ is convex.} \\
+    \end{align*}
+    Since from the previous result we have $PD_n(\mathbb{R})$ is convex, substituting $C$ by $PD_n(\mathbb{R})$ and $x_1, x_2$ by $A,B \in PD_n(\mathbb{R})$, we have the result.
+    
+    \item To prove $f(X) = -\log(\det(X))$ is convex.
+    Let $A = S^HS$. Hence,
+    \begin{equation*}
+        f(tS^HS + (1-t)B)
+    \end{equation*}
+    \begin{equation*} 
+    = f(tS^HIS + (1-t)(S^H)^{-1}(S^H)BS^{-1}S)
+    \end{equation*}
+    \begin{equation*}
+                = f(S^H(tI + (1-t)(S^H)^{-1}BS^{-1})S)
+    \end{equation*}
+
+Let $ X = S^H, Y = tI + (1-t)(S^H)^{-1}BS^{-1}, Z = S $\\
+
+The RHS can be written as g(t) =
+
+ \begin{equation*}
+       = -\log(\det(XYZ))
+ \end{equation*}
+  \begin{equation*}
+       = -\log(\det(X)\det(Y)\det(Z))
+  \end{equation*}
+   \begin{equation*}
+           = -\log(\det(XZ)\det(Y)
+   \end{equation*}
+\begin{equation*}
+        =-\log(\det(A)\det(Y))
+\end{equation*}
+\begin{equation*}
+      =-\log(\det(A)) - \log(\det(Y))
+\end{equation*}
+  \begin{equation*}
+      =-\log(\det(A)) - \log(\det(tI + (1-t)(S^H)^{-1}BS^{-1}))
+  \end{equation*}
+Hence part (b) is proved   
+
+\item We now prove the next part. Let $\lambda_1, \lambda_2...\lambda_n$ be the Eigenvalues of $ (S^H)^{-1}BS^{-1} $.\\Then the eigenvalues of Y are $t+(1-t)\lambda_1, t+(1-t)\lambda_2...t+(1-t)\lambda_n$.Since the determinant is the product of the eigenvalues and since log of product gives the sum of the logs, we have the result.
+    
+    \item To prove this we differentiate $g(t)$ twice and obtain
+    $$g^{\prime\prime}(t) = \sum_{i=1}^{n}\frac{(1-\lambda_i)^2}{(t+(1-t)\lambda_i)^2} \ge 0 \forall t \in [0,1]$$
+    \end{enumerate}
+    
+\end{enumerate}
+The proof of the main result follows from the theorem in the chapter since $g^{\prime\prime}(t) \ge 0 \Rightarrow g$ is convex which in turn implies that $f(X)$ is convex.
+
+\subsection*{Problem 7.13}
+
+Suppose function $f$ is not a constant and $\exists\ x^'$ $\in \mathbb{R}^n$ such that $f (x^')$ $\ne f(x)$. Let the value of the bound be M. Finally, suppose $f(x) \leq M$ for all $x$. We are given that $f$ is convex, therefore
+	\begin{align*}
+	f(x_1) &= f\left(\lambda \frac{x_1 - (1 - \lambda)x_2}{\lambda} + (1 - \lambda)x_2\right) \\
+	&\leq \lambda  f\left(\frac{x_1 - (1 - \lambda)x_2}{\lambda}\right)+ (1 - \lambda)f(x_2)
+	\end{align*}
+	Rearranging the terms in above inequality, we can rewrite it as 
+	\begin{equation}
+	\frac{f(x_1) - (1 - \lambda) f(x_2)}{\lambda} \leq f\left(\frac{x_1 - (1 - \lambda)x_2}{\lambda}\right) \leq M
+	\end{equation}
+	We are given that  $f$ is bounded from above. Therefore,
+	\begin{equation}
+	\frac{f(x_1) - f(x_2)}{\lambda} \leq \frac{f(x_1) - (1 - \lambda) f(x_2)}{\lambda}
+	\end{equation}
+	Which implies
+	\begin{equation}
+	\frac{f(x_1) - f(x_2)}{\lambda} \leq  M
+	\end{equation}
+	As $\lambda$ go to $0$, the term on the LHS grows without bound, which contradicts the fact that $f$ is bounded, therefore $f$ has to be a constant function. 
+
+
+
+\subsection*{Problem 7.20}
+
+We are given that $f$ and $-f$ both are convex. Hence, we know that
+
+\begin{equation*}
+    f(\lambda x + (1-\lambda) y) \leq \lambda f(x) + (1-\lambda)f(y)
+\end{equation*}
+
+\begin{equation*}
+    -f(\lambda x + (1-\lambda) y) \leq -\lambda f(x) + -(1-\lambda)f(y)
+\end{equation*}
+\begin{flushleft}
+Combining the two equations gives us 
+\end{flushleft}
+\begin{equation*}
+    f(\lambda x + (1-\lambda) y) = \lambda f(x) + (1-\lambda)f(y)
+\end{equation*}
+\begin{flushleft}
+The above result shows that $f$ is a linear transformation in $\mathbb{R}^n$ as shown in the chapter on inner product spaces. Therefore, $f(x)$ can be written as a linear transformation where as per Definition 7.4.1, $\textbf{c}$ is $\textbf{0}$ and this implies $f$ is an affine function.
+\end{flushleft}
+
+\subsection*{Problem 7.21}
+
+Let's prove the if part first. We are given that $x^*$ is a local minimizer of $f(x)$. This implies that in a small $\delta$ radius neighborhood around $x^*$, $f(x^*) \leq f(x) $. we are given that function $\phi \ o \ f(x) $ is an increasing function. Therefore, it will preserve the inequality relationship for $f(x)$. Hence we get the if side of the result.\\
+
+\begin{flushleft}
+Let's prove the only if part of the result. We are given that $\phi \ o \ f(x^*) \leq  \phi \ o \ f(x)$ for $\epsilon$ radius around $f(x)$. Aain using the property that $\phi$ function is an increasing function we get $f(x^*) \leq f(x) $. Therefore $x^*$ is a local minimizer of $f(x)$.
+
+\end{flushleft}
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
