@@ -1,0 +1,564 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{array}
+\usepackage{threeparttable}
+\usepackage{geometry}
+\geometry{letterpaper,tmargin=1in,bmargin=1in,lmargin=1.25in,rmargin=1.25in}
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{\footnotesize\textsl{Page \thepage\ of \pageref{LastPage}}}
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{0pt}
+\usepackage[format=hang,font=normalsize,labelfont=bf]{caption}
+\usepackage{listings}
+\lstset{frame=single,
+  language=Python,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+\usepackage{ragged2e}
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{harvard}
+\usepackage{setspace}
+\usepackage{float,color}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\hypersetup{colorlinks,linkcolor=red,urlcolor=blue}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{derivation}{Derivation} % Number derivations on their own
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Proposition} % Number propositions on their own
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+%\numberwithin{equation}{section}
+\bibliographystyle{aer}
+\newcommand\ve{\varepsilon}
+\newcommand\boldline{\arrayrulewidth{1pt}\hline}
+
+
+\begin{document}
+
+\begin{flushleft}
+\textbf{\large{Problem Set 5}} \\
+\vspace{2mm}
+\textbf{\large{Linear Optimization}} \\
+\vspace{2mm}
+Shekhar Kumar\\
+\end{flushleft}
+
+\vspace{2mm}
+
+\subsection*{Problem 8.1 }
+
+Plot and solution in the Jupyter Notebook.
+
+
+\subsection*{Problem 8.2}
+
+Plots and solutions in the Jupyter Notebook.
+
+\subsection*{Problem 8.3 }
+
+Let $x$ and $y$ denote the production of GI Bard Soldiers Joey dolls respectively.
+As per the problem, the revenues are given by $12x + 10y$. \
+\begin{flushleft}
+Raw material cost is given by $5x+3y$ and the overhead costs are given by
+$3x+4y$. Therefore, the net profit is given by $4x +3y$. \\\
+
+The finishing labour requirement is $15x+10y$ minutes and molding labour requirement is $2x+2y$ minutes.
+\end{flushleft}
+The optimization problem is thus given by the following equations:
+
+\begin{align*}
+  \max_{{x,y}}4x+3y\\
+  \textnormal{subject to: } 15x+10y &\leq 1800\\
+   2x+2y &\leq 300\\
+   y &\leq 200
+\end{align*}
+
+\subsection*{Problem 8.4 }
+The network flow optimization problem is as follows-
+\begin{equation*}
+\min_{x_{i,j}}  \bigl( 5x_{AD} + 2x_{AB} + 2x_{BD} + 7x_{BE} + 9x_{BF} + 5x_{BC} + 2x_{CF} + 4x_{DE}+ 3x_{EF}\bigl)
+ \end{equation*}
+\begin{align*}
+  \textnormal{subject to: }\\
+  &x_{AD} + x_{AB} = 10\\
+  &x_{BC} + x_{BD} + x_{BE} + x_{BF} - x_{AB} = 1\\
+  &x_{CF} - x_{BC} = -2\\
+  &x_{DE} - x_{AD} - x_{BD} = -3\\
+  &x_{EF} - x_{BE} - x_{BD} = 4 \\
+  &x_{CF} + x_{BF} + x_{EF} = 10\\
+  & 0 \le x_{i,j} \le 6 \textnormal{ where $i,j$ are nodes}
+\end{align*}
+
+\subsection*{Problem 8.5 }
+\begin{enumerate}
+\item The initial dictionary after adding in 3 slack variables $x_3, x_4, x_5$ is:
+  \begin{align*}
+      \zeta_1 &= 3x_1+x_2\\
+      \cline{1-2}
+      x_3 &= 15 - x_1 - 3x_2\\
+      x_4 &= 18-2x_1-3x_2\\
+      x_5 &= 4-x_1+x_2
+  \end{align*}
+
+Since the coefficient of $x_1$ is positive we can choose  it as the entering variable and $x_5$ as the leaving variable as it sets the lowest bound on $x_1$. The new dictionary becomes:
+
+\begin{align*}
+    \zeta_2 &= 12+4x_2-3x_5\\
+    \cline{1-2}
+    x_1 &= 4 + x_2 - x_5\\
+    x_3 &= 11-4x_2+ x_5\\
+    x_4 &= 10-5x_2+2x_5\\
+\end{align*}
+
+Now $x_2$ is the only variable with positive coefficient, therefore choosing it as the entering variable and $x_4$ as the leaving variable as it sets the lowest bound on $x_2$. The new dictionary becomes:
+
+\begin{align*}
+    \zeta_3 &= 20 - \tfrac{4}{5}x_4 - \tfrac{7}{5}x_5\\
+    \cline{1-2}
+    x_1 &= 6 - \tfrac{1}{5}x_4 - \tfrac{3}{5}x_5\\
+    x_2 &= 2-\tfrac{1}{5}x_4+ \tfrac{2}{5}x_5\\
+    x_3 &= 3 + \tfrac{4}{5}x_4 -\tfrac{13}{5}x_5\\
+\end{align*}
+
+Since both $x_4, x_5$ now appear with negative signs in the objective function, this is the optimum. The
+values are: $x_1= 6, x_2=2$ and the value of the objective function is $20$. This matches the answer in the
+Jupyter Notebook.
+
+\item The initial dictionary after adding in 3 slack variables $x_3, x_4, x_5$ is:
+\begin{align*}
+      \zeta_1 &= 4x_1+6x_2\\
+      \cline{1-2}
+      x_3 &= 11 + x_1 - x_2\\
+      x_4 &= 27-x_1-x_2\\
+      x_5 &= 90 - 2x_1 - 5x_2\\
+\end{align*}
+
+Since the coefficient of $x_1$ is positive we can choose  it as the entering variable and $x_4$ as the leaving variable as it sets the lowest bound on $x_1$.  The new dictionary becomes:
+
+\begin{align*}
+  \zeta_2 &= 108 + 2x_2 -4x_4\\
+  \cline{1-2}
+  x_1 &= 27 - x_2 - x_4\\
+  x_3 &= 38- 2x_2-x_4\\
+  x_5 &= 36 - 3x_2 + 2x_4\\
+\end{align*}
+
+Now $x_2$ is the only variable with positive coefficient, therefore choosing it as the entering variable and $x_5$ as the leaving variable as it sets the lowest bound on $x_2$. The new dictionary becomes:
+\begin{align*}
+  \zeta_3 &= 132 -\tfrac{8}{3}x_4-\tfrac{2}{3}x_5\\
+  \cline{1-2}
+  x_1 &= 15-\tfrac{5}{3}x_4+\tfrac{1}{3}x_5\\
+  x_2 &= 12+\tfrac{2}{3}x_4-\tfrac{1}{3}x_5\\
+  x_3 &= 14-3x_4+\tfrac{2}{3}x_5 \\
+\end{align*}
+
+All the variables now appear in the objective function with a negative sign. Hence the present choice is optimal.
+This occurs at $x=15, y=12$ and the value of the objective function is $132$.
+\end{enumerate}
+
+\subsection*{Problem 8.6 }
+After adding 3 slack variables $x_1, x_2, x_3$ and simplifying the constraints after taking out the common factors, the initial dictionary is:
+
+\begin{align*}
+  \zeta_1 &= 4x+3y\\
+  \cline{1-2}
+  x_1 &= 360-3x-2y\\
+  x_2&= 150-x-y\\
+  x_3 &= 200-y \\
+\end{align*}
+
+
+\begin{flushleft}
+Since the coefficient of $x$ is positive we can choose  it as the entering variable and $x_1$ as the leaving variable as it sets the lowest bound on $x_1$.  The new dictionary becomes:
+\end{flushleft}
+
+\begin{align*}
+  \zeta_2 &= 480 + \tfrac{1}{3}y -\tfrac{4}{3}x_1\\
+  \cline{1-2}
+  x &= 120 -\tfrac{2}{3}y - \tfrac{1}{3}x_1\\
+  x_2&= 30-\tfrac{1}{3}y+\tfrac{1}{3}x_1\\
+  x_3 &= 200-y \\
+\end{align*}
+
+Now $y$ is the only variable with positive coefficient, therefore choosing it as the entering variable and $x_2$ as the leaving variable as it sets the lowest bound on $x_2$.
+
+\begin{align*}
+  \zeta_3 &= 510 -10x_2 - \tfrac{5}{3}x_1\\
+  \cline{1-2}
+  x &= 60 + 20x_2+\tfrac{1}{3}x_1\\
+  y &= 90 - 30x_2-x_1\\
+  x_3 &= 110+30x_2+x_1 \\
+\end{align*}
+
+\begin{flushleft}
+As all the terms in the objective function appear with a negative sign, we are at the optimum.
+The value of the objective function i.e profit is \textdollar 510 and $x=60, y=90$
+\end{flushleft}
+
+\subsection*{Problem 8.7 }
+
+
+
+\begin{enumerate}
+  \item The origin is not part of the feasible set.Therefore the problem needs to be set up an auxiliary problem first by subtracting $x_0$ from all the
+  constraints. The dictionary for the auxiliary problem is:
+  \begin{align*}
+    \zeta_1 &= -x_0\\
+    \cline{1-2}
+    x_3 &= -8 + 4x_1 + 2x_2 + x_0\\
+    x_4 &= 6 + 2x_1 -3x_2+ x_0\\
+    x_5 &= 3-x_1+x_0
+  \end{align*}
+
+  We pivot $x_0$ and $x_1$. The new dictionary becomes:
+  \begin{align*}
+    \zeta_2 &= -x_0\\
+    \cline{1-2}
+    x_1 &= 2 - \tfrac{1}{2}x_2 + \tfrac{1}{4}x_3-\tfrac{1}{4}x_0\\
+    x_4 &= 10 - 4x_2 +\tfrac{1}{2}x_3+ \tfrac{1}{2}x_0\\
+    x_5 &= 1+\tfrac{5}{2}x_2 - \tfrac{1}{4}x_3 + \tfrac{5}{4}x_0\\
+  \end{align*}
+  We can see that this dictionary is optimal as all points are feasible and the objective function is 0
+  Thus $x_1=2, x_2=0, $ is a feasible point for the original problem. We can remove $x_0$ from the main problem
+  and replace $x_1$ in terms of the non-basic variables. The new dictionary becomes:
+
+  \begin{align*}
+    \zeta_3 &= 2 + \tfrac{3}{2}x_2+\tfrac{1}{4}x_3\\
+    \cline{1-2}
+    x_1 &= 2 - \tfrac{1}{2}x_2 + \tfrac{1}{4}x_3\\
+    x_4 &= 10 - 4x_2 +\tfrac{1}{2}x_3\\
+    x_5 &= 1 + \tfrac{1}{2}x_2 - \tfrac{1}{4}x_3\\
+  \end{align*}
+  Since the coefficient for  $x_3$ is positive and $x_5$ provides the lowest bound for it, we pivot around $x_5$. The new dictionary becomes:
+  \begin{align*}
+    \zeta_4 &= 3+2x_2-x_5\\
+    \cline{1-2}
+    x_1 &= 3 - x_5\\
+    x_4 &=12-3x_2-2x_5\\
+    x_3 &= 4+2x_2-4x_5\\
+  \end{align*}
+Now $x_2$ is the only variable with positive coefficient, $x_4$ provides a positive lower bound on $x_2$, therefore taking a pivot around it we  obtain the dictionary:
+\begin{align*}
+  \zeta_5 &= 11- \tfrac{2}{3}x_4- \tfrac{7}{3}x_5\\
+  \cline{1-2}
+  x_1 &= 3-x_5\\
+  x_2 &= 4 - \tfrac{1}{3}x_4 - \tfrac{2}{3}x_5\\
+  x_3 &= 12 - \tfrac{2}{3}x_4 - \tfrac{16}{3}x_5
+\end{align*}
+This dictionary is optimal as all the terms appear with a negative sign. The optimal values are $x_1=3, x_2=4$.
+
+\item The origin is not part of the feasible set as the third constraint appears with a negative sign.
+The auxiliary problem is:
+\begin{align*}
+  \zeta_1 &= -x_0\\
+  \cline{1-2}
+  x_3 &= 15-5x_1-3x_2+x_0\\
+  x_4 &= 15-3x_1-5x_2+x_0\\
+  x_5 &= -12 -4x_1+3x_2+x_0\\
+\end{align*}
+
+We pivot $x_0, x_5$ and get the new dictionary as:
+\begin{align*}
+  \zeta_2 &= 12+4x_1-3x_2+x_5\\
+  \cline{1-2}
+  x_0 &= 12+4x_1-3x_2+x_5\\
+  x_3 &= 27-x_1 - 6x_2+x_5\\
+  x_4 &= 27+x_1- 8x_2+x_5\\
+\end{align*}
+
+Again, we pivot $x_2, x_4$ and obtain:
+\begin{align*}
+  \zeta_3 &= -\tfrac{15}{8} - \tfrac{29}{8}x_1-\tfrac{3}{8}x_4- \tfrac{5}{8}x_5\\
+  \cline{1-2}
+  x_3 &= \tfrac{27}{4} - \tfrac{7}{4}x_1+\tfrac{3}{4}x_4+\tfrac{1}{4}x_5\\
+  x_2 &= \tfrac{27}{8} + \tfrac{1}{8}x_1 -\tfrac{1}{8}x_4+\tfrac{1}{8}x_5\\
+  x_0 &= \tfrac{15}{8} + \tfrac{29}{8}x_1 + \tfrac{3}{8}x_4 + \tfrac{5}{8}x_5\\
+\end{align*}
+
+This dictionary is optimal since all the coefficients in the objective function are negative. However,
+at this optimum, $x_0 \ne 0$. Hence the problem is infeasible. 
+
+\item After adding in the slack variables, the initial dictionary is :
+\begin{align*}
+  \zeta_1 &= -3x_1+x_2\\
+  \cline{1-2}
+  x_3 &= 4-x_2\\
+  x_4 &= 6+2x_1-3x_2\\
+\end{align*}
+We pivot, $x_2, x_4$ and obtain the following dictionary:
+\begin{align*}
+  \zeta_2 &= 2-\tfrac{7}{3}x_1-\tfrac{1}{3}x_4\\
+  \cline{1-2}
+  x_2 &= 2+\tfrac{2}{3}x_1 - \tfrac{1}{3}x_4\\
+  x_3 &= 2-\tfrac{2}{3}x_1+\tfrac{1}{3}x_3\\
+\end{align*}
+
+This dictionary is optimal as all the coefficients in the objective function have negative signs.
+The optimal solution is $x_1= 0, x_2 = 2$ and the value of the objective function is 2.
+\end{enumerate}
+
+
+
+\subsection*{Problem 8.9 }
+
+As per proposition 8.3.1, if the coefficient of the variable in objective function is positive and the coefficients in the constraints are non-negative then the optimization problem will be unbounded.Consider the problem below
+
+\begin{align*}
+  \max_{{x,y,z}} ax+ 5y+ 3z\\
+  \textnormal{subject to: } mx -y-z\leq 1\\
+   3y+4z\leq 1\\
+\end{align*}
+If $a,m$ are positive then the problem would be unbounded.
+\subsection*{Problem 8.10 }
+As seen in the problem 8.7(ii), if the constraints are such that their solution set is null then the optimization problem will be infeasible.
+\begin{align*}
+  \max_{{x,y,z}} 2x+ 9y+ 3z\\
+  \textnormal{subject to: } x + y + z\leq 1\\
+   3x + 2y+ 5z\leq 4 \\
+   x - y- z\leq -10000
+\end{align*}
+The last constraint ensures that the intersection between the three constraints is null.Hence, the optimization is infeasible. 
+
+
+\subsection*{Problem 8.11 }
+Section 8.3.2 provides the condition for the origin $\textbf{0}$ vector to be infeasible. The intuition is that $Ax\preceq b$ has to be true for $x=0$ and if vector $\texbf{b}$ has any one component has a negative value then the origin becomes infeasible. Problem 8.7(i) is an example of such a case in 2-dimensions.
+
+The dual problem for 8.18 can be an example for a 3-D case. Another solution can be seen as below:-
+
+\begin{align*}
+  \max_{{x,y,z}} 2x+ 9y+ 3z\\
+  \textnormal{subject to: } x + y + z\leq 1\\
+   3x + 2y+ 5z\leq -1 \\
+   x - 2y -3z\leq -4
+\end{align*}
+The last two constraints ensure that some components of $\texbf{b}$  vector are negative. Hence the origin will be infeasible.
+
+
+
+\subsection*{Problem 8.12 }
+
+The initial dictionary after adding in the slack variables is:
+\begin{align*}
+  \zeta_1 &= 10x_1-57x_2-9x_3-24x_4\\
+  \cline{1-2}
+  x_5 &= -0.5x_1 + 1.5x_2+0.5x_3-x_4\\
+  x_6 &= -0.5x_1+5.5x_2 + 2.5x_3 -9x_4\\
+  x_7 &= 1-x_1\\
+\end{align*}
+
+Using Bland's rule, we choose lowest coefficient basic and non-basic  variables for the pivot $x_1, x_5$. The new dictionary is:
+\begin{align*}
+  \zeta_2 &= -27x_2+x_3-44x_4 - 20x_5\\
+  \cline{1-2}
+  x_1 &= 3x_2 + x_3 -2x_4-2x_5\\
+  x_6 &= 4x_2+2x_3-8x_4+x_5\\
+  x_7 &= 1-3x_2-x_3+2x_4+2x_5\\
+\end{align*}
+
+We now pivot $x_3, x_7$ and obtain:
+
+\begin{align*}
+  \zeta_3 &= 1-30x_2-42x_4-18x_5-x_7\\
+  \cline{1-2}
+  x_1 &= 1-x_7 \\
+  x_6 &= 2-2x_2-4x_4+5x_5-2x_7 \\
+  x_3 &= 1-3x_2+2x_4+2x_5-x_7 \\
+\end{align*}
+
+\begin{flushleft}
+This dictionary is optimal as all the coefficients appear with negative sign in the objective function. The
+optimal points are $x_1=1, x_2=0, x_3=1, x_4=0$ and the value of the objective function is 1.
+\end{flushleft}
+
+\subsection*{Problem 8.15}
+  Using the definitions of primal and dual problems where $\bm{x, y}$ are feasible points of the primal and the dual respectively, we have
+
+
+\begin{equation*}
+    \bm{A^Ty} \succeq \bm{c} 
+\end{equation*}
+
+and 
+
+\begin{equation*}
+    \bm{Ax} \preceq \bm{b}
+\end{equation*}
+Using these two results we can do the following basic  linear algebra operations:
+\begin{align*}
+   \bm{A^Ty} &\succeq \bm{c} \\
+   \Rightarrow \bm{x^TA^Ty} &\ge \bm {x^Tc}\\
+   \Rightarrow \bm{(Ax)^Ty} &\ge \bm{(x^Tc)}\\
+   \Rightarrow \bm{b^Ty} &\ge \bm{(Ax)^Ty} \ge \bm{x^Tc}\\
+   \Rightarrow \bm{b^Ty} &\ge \bm{x^Tc}\\
+   &=\bm{c^Tx}\\
+   \Rightarrow \bm{b^Ty} &\ge \bm{c^Tx}
+\end{align*}
+
+\subsection*{Problem 8.17 }
+
+Consider the primal problem
+\begin{align*}
+\max_{{x}} \mathbf{c^Tx} \\
+\textnormal{subject to } &A\textbf{x}\preceq \textbf{b}\\
+&\textbf{x} \succeq 0\\
+\end{align*}
+
+The dual of the primal problem is
+\begin{align*}
+\min_{{y}} \mathbf{b^Ty} \\
+\textnormal{subject to } &A^T\textbf{y}\succeq \textbf{c}\\
+&\textbf{y} \succeq 0\\
+\end{align*}
+
+The dual can be re-written as
+\begin{align*}
+\max_{{y}} \mathbf{-b^Ty} \\
+\textnormal{subject to } &-A^T\textbf{y}\preceq \textbf{-c}\\
+&\textbf{y} \succeq 0\\
+\end{align*}
+
+The dual of the dual problem can be written as follows
+
+\begin{align*}
+\min_{{x}} \mathbf{-c^Tx} \\
+\textnormal{subject to } -&(A^T)^T\textbf{x} \succeq \textbf{-b}\\
+&\textbf{x} \succeq 0\\
+\end{align*}
+
+Which can be simplified to the primal problem:
+\begin{align*}
+\max_{{x}} \mathbf{c^Tx} \\
+\textnormal{subject to } &A\textbf{x}\preceq \textbf{b}\\
+&\textbf{x} \succeq 0\\
+\end{align*}
+
+Which is nothing but the primal problem. Hence the dual of the dual is the primal problem.
+
+\subsection*{Problem 8.18}
+We first solve the primal problem using the simplex method. The initial dictionary is
+
+\begin{align*}
+  \zeta_1 &= x_1+x_2\\
+  \cline{1-2}
+  x_3 &= 3-2x_1-x_2\\
+  x_4 &= 5-x_1-3x_2\\
+  x_5 &= 4-2x_1-3x_2\\
+\end{align*}
+\begin{flushleft}
+As coefficient for $x_1$ is positive, and  the slack variable $x_3$ gives the lowest bound on $x_1$, we choose it as pivot. This gives the new dictionary as:
+\end{flushleft}
+
+\begin{align*}
+  \zeta_2 &= \tfrac{3}{2} + \tfrac{1}{2}x_2-\tfrac{1}{2}x_3\\
+  \cline{1-2}
+  x_1 &= \tfrac{3}{2} -\tfrac{1}{2}x_2-\tfrac{1}{2}x_3\\
+  x_4 &= \tfrac{7}{2}-\tfrac{5}{2}x_2+\tfrac{1}{2}x_3\\
+  x_5 &= 1-2x_2+x_3\\
+\end{align*}
+\begin{flushleft}
+As coefficient for $x_2$ is positive, and  the slack variable $x_4$ gives the lowest bound on $x_2$, we choose it as pivot. This gives the new dictionary as:
+\end{flushleft}
+
+\begin{align*}
+  \zeta_3 &= \tfrac{7}{4} - \tfrac{1}{4}x_3-\tfrac{1}{4}x_5\\
+  \cline{1-2}
+  x_1 &= \tfrac{5}{4} - \tfrac{3}{4}x_3+\tfrac{1}{4}x_5\\
+  x_4 &= \tfrac{9}{4} - \tfrac{3}{4}x_3+\tfrac{5}{4}x_5\\
+  x_2 &=\tfrac{1}{2}+\tfrac{1}{2}x_3-\tfrac{1}{2}x_5\\
+\end{align*}
+\begin{flushleft}
+This dictionary is optimal as the coefficients of the variables in the objective function appear with a
+negative sign. The optimal values are $x_1=\frac{5}{4}, x_2 = \frac{1}{2}$ and the objective function is $\frac{7}{4}$.
+\end{flushleft}
+
+\vspace{3mm}
+\begin{flushleft}
+The dual problem in minima can be written as a maximization problem in the following fashion:
+\end{flushleft}
+
+\begin{align*}
+  \max_{{x,y,z}} -3x-5y-4z\\
+  \textnormal{subject to: } -2x-y-2z\leq -1\\
+   -x-3y-3z\leq -1\\
+\end{align*}
+
+Since both the constants of the constraints are negative, the origin is not a feasible set for the solution here and we need to write the auxiliary problem
+
+\begin{align*}
+\zeta_2 & =-w_0\\
+\cline{1-2}
+w_1 &=-1+2x+y+2z+w_0\\
+w_2 &=-1+x+3y+3z+w_0\\
+\end{align*}
+
+Pivoting between $w_1$ and $w_0$ gets us the dictionary:
+\begin{align*}
+\zeta_3 &=-1+2x+y+2z-w_1\\
+\cline{1-2}
+w_0 &=1-2x-y-2z+w_1\\
+w_2 &=-x+2y+z+w_1\\
+\end{align*}
+
+Pivoting between $y$ and $w_0$ gets us the dictionary:
+
+\begin{align*}
+\zeta_4 & =-w_0\\
+\cline{1-2}
+y & =1-2x-2z+w_1-w_0\\
+w_2 & =2-5x-3z+3w_1-2w_0\\
+\end{align*}
+\begin{flushleft}
+This shows that $y=1$ can be taken as the starting point for the feasible solution.Pivoting between $y$ and $z$ gets us the dictionary:
+\end{flushleft}
+
+\begin{align*}
+\zeta_5 & =-2+x-3y-2w_1\\
+\cline{1-2}
+z &=\tfrac{1}{2}-x-\tfrac{1}{2}y+\tfrac{1}{2}w_1\\
+w_2 &=\tfrac{1}{2}-2x+\tfrac{3}{2}y+\tfrac{3}{2}w_1\\
+\end{align*}
+Pivoting between $x$ and $w_2$ gets us the dictionary:  
+\begin{align*}
+\zeta_6 &=-\tfrac{7}{4}-\tfrac{3}{2}y-\tfrac{5}{4}w_1-\tfrac{1}{2}w_2\\
+\cline{1-2}
+z &=\tfrac{1}{4}-2\tfrac{3}{2}y-\tfrac{1}{4}w_1+\tfrac{1}{2}w_2\\
+x &=\tfrac{1}{4}+\tfrac{3}{2}y+\tfrac{3}{4}w_1-\tfrac{1}{2}w_2\\    
+\end{align*}
+
+\begin{flushleft}
+The optimal will be achieved at:$(\frac{1}{4},0,\frac{1}{4})$ with the optimal value:$\frac{7}{4}$. The solutions to the primal and dual problems prove the strong duality theorem as the duality gap is \textbf{0}.
+\end{flushleft}
+ 
+\end{document}
