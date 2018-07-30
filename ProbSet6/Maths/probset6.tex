@@ -1,0 +1,353 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{array}
+\usepackage{threeparttable}
+\usepackage{geometry}
+\geometry{letterpaper,tmargin=1in,bmargin=1in,lmargin=1.25in,rmargin=1.25in}
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{\footnotesize\textsl{Page \thepage\ of \pageref{LastPage}}}
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{0pt}
+\usepackage[format=hang,font=normalsize,labelfont=bf]{caption}
+\usepackage{listings}
+\lstset{frame=single,
+  language=Python,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+\usepackage{ragged2e}
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{harvard}
+\usepackage{setspace}
+\usepackage{float,color}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\hypersetup{colorlinks,linkcolor=red,urlcolor=blue}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{derivation}{Derivation} % Number derivations on their own
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Proposition} % Number propositions on their own
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+%\numberwithin{equation}{section}
+\bibliographystyle{aer}
+\newcommand\ve{\varepsilon}
+\newcommand\boldline{\arrayrulewidth{1pt}\hline}
+
+
+\begin{document}
+
+\begin{flushleft}
+\textbf{\large{Problem Set 5}} \\
+\vspace{2mm}
+\textbf{\large{Unconstrained Optimization}} \\
+\vspace{2mm}
+Shekhar Kumar\\
+\end{flushleft}
+
+\vspace{2mm}
+
+\subsection*{Problem 9.1}
+
+An unconstrained linear objective function will have the form $A\textbf{x} + \textbf{b}$. where $A$ is a $m\times n$ matrix and $\texbf{x,b}$ are vectors in $\mathbf{R}^n$. The necessary condition for a local minima to exist is that the first derivative has to be equal to zero at that point.
+\\
+The first derivative, of the linear function is $\texbf{A}$. If A is zero then the linear function can be written as $\textbf{b}$, which is a constant, and if $\textbf{A}$ is not zero then the minima doesn't exist. 
+\subsection*{Problem 9.2}
+
+The minimization problem $||Ax-b||_2$ can be written as follows
+
+\begin{align*}
+\langle Ax-b, Ax-b\rangle &= (Ax-b)^T(Ax-b)\\
+(Ax-b)^T(Ax-b) &= (x^TA^T - b^T)(Ax-b) \\ 
+&= x^TA^TAx - x^TA^Tb -b^TAx +2b^Tb \\
+&= x^TA^TAx -2b^TAx +2b^Tb
+\end{align*}
+\begin{flushleft}
+Taking the derivative of the above equation and using the fact that $A^TA$ is always positive semidefinite:
+\end{flushleft}
+
+\begin{equation*}
+\lim_{h \to 0}
+\frac{(x+h)^TA^TA(x+h) -x^TA^TAx -2b^TA(x+h) -2b^TAx  }{h}
+\end{equation*}
+
+\begin{flushleft}
+Solving the above limit will give us the expression given below:
+\end{flushleft}
+
+\begin{align*}
+2x^TA^TA - 2b^TA = 0 \\
+\iff x^TA^TA = b^TA \\
+\iff A^TAx = A^Tb
+\end{align*}
+\begin{flushleft}
+To check that the above linear equation gives us a  condition for minima, we can take the second derivative of the original equation. It is given by $ 2A^TA $ which is positive definite.\\
+\vspace{2mm}
+Therefore, the original equation satisfies the necessary and sufficient conditions for a minima. 
+\end{flushleft}
+\subsection*{Problem 9.3}
+
+We were taught the following methods:-
+\begin{itemize}
+    \item[1] Steepest Descent
+\item[2] Gradient Descent
+\item[3] Newton
+\item[4] Quasi-Newton
+\item[5] Conjugate Gradient
+\end{itemize}
+
+\begin{flushleft}
+The gradient descent method takes smallest amount of computational power per step, but it takes a larger number of steps to converge on average. The steepest descent method is very fast but it requires calculating a further optimization problem to identify the optimal $\alpha$. Newton methods converge in fewer steps, but the steps are much more computationally expensive as they require calculation of Hessian at each step.Quasi-Newton methods try to address this problem by not requiring to calculate the Hessian at each step.  Conjugate gradient method is the hybrid of these  two methods.It takes n steps to solve an unconstrained quadratic optimization problem, whereas the steepest descent \& gradient descent may take more steps.
+\end{flushleft}
+\\
+\begin{flushleft}
+If the dimension is not too big, and especially if the function is differentiable we can use Newton's method. It's often a good idea to use steepest descent to get a better starting $x_0$ for Newton's method or when the function is not differentiable. If the dimensionality is very large, we are forced to resort to conjugate gradient.
+\end{flushleft}
+
+\begin{flushleft}
+Ultimately using these methods are an art and intuition rather than a science and there is no method to rule them all, especially for non-linear optimization problems.
+\end{flushleft}
+
+\subsection*{Problem 9.4}
+\begin{flushleft}
+Suppose $x_0$ is chosen in such a fashion that $Q(Qx_0-b) = \lambda (Qx_0-b)$, as per the specification of the problem. Using the steepest descent method and using the fact that $Df(x)^T =  Qx-b$ and the value of $\alpha_k$ for minimizing the $\phi(\alpha_k)$we get.
+
+\vspace{3mm}
+Let $D$ be the derivative of $f(x)^T$, and $\lambda$ is the eigenvalue of $Q$ with $Df(x_0)^T = Q x_0 - b$. Then,
+\end{flushleft}
+
+\begin{align*}
+  x_1 =& x_0 - \frac{D  D^T}{DQD^T} D^T \\
+      =& x_0 - \frac{D D^T}{D \lambda D^T} D^T \\
+      =& x_0 - \frac{1}{\lambda} D^T \\
+      =& x_0 - Q^{-1} D^T \\
+      =& x_0 - Q^{-1} (Q x_0 -b) \\
+      =& Q^{-1}b
+\end{align*}
+
+We can prove the reverse using the same equation above. If the algorithm converges in one step then $Qx_0- b$ is eigen vector to $Q$.
+\subsection*{Problem 9.5}
+The application of steepest descent method is contingent on function $f(x)$ being continuous and differentiable. Therefore, we take $f(x)$ to be differentiable in its domain. We are given the following other results:
+
+\begin{align*}
+   x_{k+1} -x_k=  -\alpha_kDf(x_k)^T\\
+   x_{k+2} -x_{k+1}=  -\alpha_{k+1}Df(x_{k+1})^T
+\end{align*}
+
+\begin{flushleft}
+Where $\alpha_k,\alpha_{k+1} $ are minimizers of $f(x_k - \alpha_k  Df(x_k)^T )$ and $f(x_{k+1} - \alpha_{k+1} Df(x_{k+1})^T)$ respectively.
+\vspace{2mm}
+The condition for orthogonality is
+\end{flushleft}
+
+\begin{align*}
+    \langle x_{k+1} -x_k,x_{k+2} -x_{k+1}\rangle = 0\\
+    \iff (x_{k+1} -x_k)^T(x_{k+2} -x_{k+1}) = 0\\
+    \iff \alpha_k \alpha_{k+1}Df(x_k)^TDf(x_{k+1})= 0\\
+\end{align*}
+
+\begin{flushleft}
+If $\alpha_k$ is the minimizer then the following condition needs to be satisfied:-
+\end{flushleft}
+\begin{equation*}
+    \frac{d f(x_{k+1}) }{d \alpha_k}  = Df(x_k)^TDf(x_{k+1}) = 0 
+\end{equation*}
+
+\begin{flushleft}
+Combining the two equations above gives us our result.
+\end{flushleft}
+
+
+\subsection*{Problem 9.6}
+
+
+Solution in the Jupyter notebook submitted with this document.
+\subsection*{Problem 9.7}
+Solution in the Jupyter notebook submitted with this document.
+\subsection*{Problem 9.8}
+Solution in the Jupyter notebook submitted with this document.
+\subsection*{Problem 9.9}
+Solution in the Jupyter notebook submitted with this document.
+\subsection*{Problem 9.10}
+Newton method iterations are give by the following rule:
+\begin{align*}
+   x_{k+1}=& x_{k} - (D^2 (f(x_{k})))^{-1} Df(x_{k})^T \\
+\end{align*}
+\begin{flushleft}
+As seen in problem 9.2 and 9.3 above. The first derivative of a quadratic form is given by:
+\end{flushleft}
+
+\begin{align*}
+   \mathbf{Qx-b}
+\end{align*}
+
+\begin{flushleft}
+The second derivative is given by $\mathbf{Q}$.
+
+\vspace{2mm}
+
+Assuming that the initial value for starting the iterations is $x_0$, and substituting the values of first and second derivative we get:
+\end{flushleft}
+
+\begin{align*}
+x_1 &= x_0 - D^2f(x_0)^{-1}Df(x_0) \\
+&= x_0 - Q^{-1} (Qx_0 - b) \\
+&= x_0 - x_0 + Q^{-1}b = Q^{-1}b
+\end{align*}
+
+
+\begin{flushleft}
+The iteration will end here as $x_1$ is note dependent on $x_0$. Therefore, the Newton method for quadratic forms will converge to the optimal in one step, starting from any initial value.
+\end{flushleft}
+
+
+\subsection*{Problem 9.12}
+
+We are given that $\mathbf{\lambda}$ represents the eigen values of matrix $\mathbf{A}$ and $\mathbf{B = A+ \mathbf{\mu} I}$. Let $x$ be an eigenvector of $\mathbf{A}$. Then
+
+\begin{align*}
+ Ax &=\lambda x  \\
+ (B - \mu I)x &= \lambda x  \\
+ Bx &= (\lambda + \mu)x  \\
+\end{align*}
+
+\begin{flushleft}
+This shows that eigen vectors of A and b are same and the eigen values of B are given by $\mathbf{\lambda + \mu}$.
+\end{flushleft}
+\subsection*{Problem 9.15}
+\begin{flushleft}
+Using the property that $A^{-1}A = I$. We show the result below:
+\vspace{2mm}
+Let $X = (C^{-1} + DA^{-1}B)^{-1}$. Further simplifying the equations we get our result as follows: 
+\end{flushleft}
+
+\begin{align*}
+(A^{-1} - A^{-1}BXDA^{-1})(A+BCD) \\
+= AA^{-1} - A^{-1}BXDA^{-1}A + A^{-1}BCD - A^{-1}BXDA^{-1}BCD \\
+= I +  A^{-1}BCD - A^{-1}BXD -A^{-1}BXDA^{-1}BCD  \\
+= I +  A^{-1}BCD - A^{-1}BX\big[I + DA^{-1}BC\big]D \\
+= I +  A^{-1}BCD - A^{-1}BX\big[C^{-1}C + DA^{-1}BC\big]D\\
+= I +  A^{-1}BCD - A^{-1}BX\big[C^{-1} + DA^{-1}B\big]CD \\
+= I +  A^{-1}BCD - A^{-1}B\big[C^{-1} + DA^{-1}B\big]^{-1}\big[C^{-1} + DA^{-1}B\big]CD\\
+= I + A^{-1}BCD - A^{-1}BCD\\
+= I
+\end{align*}
+
+\subsection*{Problem 9.16}
+\begin{flushleft}
+We have to use the same formula given in Problem 9.15, above to prove the result below. As suggested in the class, C in the $\textbf{SMW}$ formula is 1 in equation given at the end of section 9.4.1.
+\\
+\vspace{2mm}
+We are given:
+\end{flushleft}
+
+\begin{align*}
+    A_{k+1} = A_{k} + \dfrac{y_k - A_{k}s_{k}}{\lVert s_k \rVert^2}.1.s_{k}^T 
+\end{align*}
+
+\begin{flushleft}
+Applying the SMW formula we get
+\end{flushleft}
+\begin{align*}
+  A_{k+1}^{-1}   
+\end{align*}
+
+\begin{align*}
+ = A_{k}^{-1} -A_{k}^{-1}\bigg[ \dfrac{y_k - A_{k}s_{k}}{\lVert s_k \rVert^2}\bigg]\bigg[1 + s_{k}^TA^{-1} \dfrac{y_k - A_{k}s_{k}}{\lVert s_k \rVert^2} \bigg]^{-1}s_{k}^TA_k^{-1}\\
+ = A_{k}^{-1} -\bigg[ \dfrac{A_{k}^{-1}y_k - s_{k}}{\lVert s_k \rVert^2}\bigg]\bigg[1 + \dfrac{s_{k}^TA^{-1} y_k - s_{k}^Ts_{k}}{s_{k}^Ts_{k}} \bigg]^{-1}s_{k}^TA_k^{-1}\\
+  = A_{k}^{-1} +\bigg[ \dfrac{s_{k}-A_{k}^{-1}y_k}{\lVert s_k \rVert^2}\bigg]\bigg[1 + \dfrac{s_{k}^TA^{-1} y_k - s_{k}^Ts_{k}}{s_{k}^Ts_{k}} \bigg]^{-1}s_{k}^TA_k^{-1}\\
+    = A_{k}^{-1} +\bigg[ \dfrac{s_{k}-A_{k}^{-1}y_k}{s_{k}^Ts_{k}}\bigg]\bigg[\dfrac{s_{k}^Ts_{k}}{s_{k}^TA_k^{-1} y_k} \bigg]^{-1}s_{k}^TA_k^{-1}\\
+     = A_{k}^{-1} + \dfrac{(s_{k}-A_{k}^{-1}y_k)s_{k}^TA_k^{-1}}{s_{k}^TA_k^{-1} y_k} \\
+\end{align*}
+\begin{flushleft}
+We get our desired result.
+\end{flushleft}
+
+\subsection*{Problem 9.17}
+\begin{equation*}
+    A_{k}+\frac{y_{k}y_{k}^T}{y_k^Ts_k}-\frac{A_{k}s_ks_k^TA_{k}}{s_k^TA_{k}s_k}=A_k+   \begin{bmatrix}
+     A_ks_k & y_k
+  \end{bmatrix} \begin{bmatrix}
+-\frac{s_k^TA_k}{s_k^TA_ks_k} \\ \frac{y_k^T}{y_k^Ts_k}
+\end{bmatrix}
+\end{equation*}
+
+
+\begin{flushleft}
+Applying the SMW formula now, and assuming $C$ to be 1 ,we will get our desired result.
+\end{flushleft}
+
+
+
+\subsection*{Problem 9.18}
+Expanding $\phi_k(\alpha)$ as per the quadratic form, gives us the following equation:-
+\begin{equation*}
+\phi_k(\alpha) = f(x_k + \alpha_k d_k)
+\end{equation*}
+\begin{equation*}
+  \iff \frac{1}{2} x_k^{T} Q x_k + \alpha_k (d^{k})^T Q x_k + \frac{\alpha_k^2}{2} (d^{k})^T Q d^{k} - x_k^Tb - \alpha_k (d^k)^T b  
+\end{equation*}
+
+For finding the optimal $\alpha $, taking the derivative wrt $\alpha$. 
+\begin{align*}
+ \frac{\partial \phi_k(\alpha_k)}{\partial \alpha_k}= 
+   \alpha_k (d^{k})^T Q d^k - (d^k)^T b + (d^k)^T Q x_k =0 \\
+\end{align*}
+
+\begin{flushleft}
+Rearranging the terms above gives us the result.
+\end{flushleft}
+
+\subsection*{Problem 9.20}
+
+Define the basis $W_i := \{\tilde{r}^{0}, \tilde{r}^{0}, ..., \tilde{r}^{i-1} \}$ where $\tilde{r}^{k} := b-Qx^{k}$. By applying Gram-Schmit process, we can construct
+\begin{equation*}
+    r^{k} := \tilde{r}^{k} - \sum_{j=0}^{k-1} \frac{(r^{j},\tilde{r}^{k})_Q}{ \| r^{j}\|_{Q}^{2}} r^j
+\end{equation*}
+
+
+Note that $W_i = span\{r^{0}, ..., r^{i-1}\}$ because every $r^i$ can be written as a linear combination of $\tilde{r}^{0}, ..., \tilde{r}^{i}$.
+Also, note that with this setting we can deduce that the Conjugate Gradient method in each iteration is solving the following minimization problem;
+\[ \min_{x \in x^{0} + W_i} f(x) \] where the minimizer of this problem is $x^i$. Thus, the following problem results in $t = 0$ such that
+\[ \min_t f(x^{i} + t \tilde{r}^j)\] with $j < i$. Thus, the first order condition of this problem is
+\[D f(x^{i}) \tilde{r}^{j} = 0\]
+implying the following;
+\begin{align*}
+  0 =& D f(x^{i}) \tilde{r}^{j}  \\
+    =& (Q x^i -b)^T \tilde{r}^j  \\
+    =& -\tilde{r}^i \tilde{r}^j
+\end{align*} $\forall j < i$. 
+
+
+
+\end{document}
